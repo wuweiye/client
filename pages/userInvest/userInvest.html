@@ -1,0 +1,351 @@
+<!-- 页面头部 -->
+<section class="content-header">
+	<h1>投资用户管理</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="javascript:void(0)"><i class="fa fa-dashboard"></i> 活动管理</a>
+		</li>
+		<li class="active">投资用户管理</li>
+	</ol>
+</section>
+
+<!-- 主要内容 -->
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <!-- Grid -->
+      <div id="dataGrid" class="box box-primary">
+        <!-- Grid头部 -->
+        <div class="box-header">
+        	<h3 class="box-title">投资用户管理</h3>
+        	<div class="box-tools">
+	        </div>
+        </div>
+        <div class="box-header">
+						<!-- 统计数据 -->
+						<form id="searchForm" name="searchForm" method="post">
+							<div class="row">
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label>用户：</label>
+										<input name="phone" type="text" class="form-control" placeholder="搜索用户">
+									</div>
+								</div>
+								<!--<div class="col-sm-3">
+									<div class="form-group">
+										<label>类型：</label>
+										<select name="type" class="form-control">
+											<option value="" selected>全部</option>
+											<option value="referee">推广人</option>
+											<option value="channel">渠道</option>
+										</select>
+									</div>
+								</div>-->
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label>注册时间:</label>
+										<div class="input-group input-group-sm">
+											<div class="input-group-addon">
+												<i class="fa fa-calendar"></i>
+											</div>
+											<input name="begin" type="text" class="form-control datepicker inputh" placeholder="从" data-date-format="YYYY-MM-DD HH:mm:ss" data-date-end="end">
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label>&nbsp;</label>
+										<div class="input-group daterange input-group-sm">
+											<div class="input-group-addon">
+												<i class="fa fa-calendar"></i>
+											</div>
+											<input name="end" type="text" class="form-control datepicker inputh" placeholder="到" data-date-format="YYYY-MM-DD HH:mm:ss" data-date-begin="begin">
+										</div>
+									</div>
+								</div>
+						</form>
+					</div>
+				</div>
+        <!-- Grid内容体 -->
+        <div class="box-body">
+          <table id="dataTable" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>序号</th>
+                <th>用户</th>
+                <th>推荐人</th>
+              <!--  <th>类型</th>-->
+                <th>推广数量</th>
+               <!-- <th>推广累计获得奖励</th>-->
+                <th>注册时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 编辑返佣金额窗口 -->
+<div id="channelModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document" style="width: 20%;">
+		<div class="modal-content">
+			<!-- 模态窗头部 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title">详情</h4>
+			</div>
+			<!-- 模态窗内容体 -->
+			<div class="modal-body">
+				<form id="channelForm" name="channelForm" method="post">
+					<div class="row">
+						<div class="col-sm-12">
+							<label>设置返佣金额</label>
+							<div class="form-group">
+								<input name="channelAmount" type="text" data-validfloatforplus="8.2" maxlength="11"  class="form-control" placeholder="请输入返佣金额" data-validpositive="non-zero" data-error="不能为空且值必须大于0，小于100000000.00!" required>
+								<div class="help-block with-errors text-red"></div>
+							</div>
+						</div>
+					</div>
+					<input name="oid" type="hidden">
+				</form>
+			</div>
+			<!-- 模态窗底部 -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
+				<button id="channelSubmit" type="button" class="btn btn-primary btn-submit channelSubmit">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--确认提示框-->
+<div id="confirmModal" class="popover func-delete-popover" style="width: 15%;">
+	<div class="arrow"></div>
+	<h3 class="popover-title"></h3>
+	<div class="popover-content">
+		<p></p>
+		<div class="popover-btn clearfix">
+			<div class="unit">
+				<button class="btn btn-block btn-primary accept" data-dismiss="modal">确 定</button>
+			</div>
+			<div class="unit">
+				<button class="btn btn-block btn-default cancel" data-dismiss="modal">取 消</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!--返佣详情  -->
+<div id="detailModal" class="modal fade item_box" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document" style="width: 30%;">
+		<div class="modal-content">
+			<!-- 模态窗头部 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<!-- 模态窗内容体 -->
+			<div class="modal-body">
+		          <table id="detailTable" class="table table-bordered table-striped">
+		            <thead>
+		              <tr>
+		                <th>时间</th>
+		                <th>被邀请人</th>
+		                <th>被邀请人投资额</th>
+		                <th>返佣金额</th>
+		              </tr>
+		            </thead>
+		          </table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">确 定</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 详情模态窗 默认大小 -->
+<div id="userDetailModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<!-- 模态窗头部 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title">详情</h4>
+			</div>
+			<!-- 模态窗内容体 -->
+			<div class="modal-body">
+				<form id="userDetailForm" name="userDetailForm" method="post">
+					<div class="row">
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>用户</dt>
+								<dd>
+									<div data-detail-fetch="phone"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>姓名</dt>
+								<dd>
+									<div data-detail-fetch="name"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>累计投资次数</dt>
+								<dd>
+									<div data-detail-fetch="investCount"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>累计投资金额</dt>
+								<dd>
+									<div data-detail-fetch="investAmount"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>生日</dt>
+								<dd>
+									<div data-detail-fetch="birthday"></div>
+								</dd>
+							</dl>
+						</div>
+						<!--<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>类型</dt>
+								<dd>
+									<div data-detail-fetch="type" data-enum-transform="channelType"></div>
+								</dd>
+							</dl>
+						</div>-->
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>邀请数量</dt>
+								<dd>
+									<div data-detail-fetch="friends"></div>
+								</dd>
+							</dl>
+						</div>
+						<!--<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>累计佣金</dt>
+								<dd>
+									<div data-detail-fetch="totalReward"></div>
+								</dd>
+							</dl>
+						</div>-->
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>注册时间</dt>
+								<dd>
+									<div data-detail-fetch="registerTime" data-date-transform="YYYY-MM-DD HH:mm:ss"></div>
+								</dd>
+							</dl>
+						</div>
+
+						<!--<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>渠道类型审核人</dt>
+								<dd>
+									<div data-detail-fetch="auditor"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>渠道类型审核时间</dt>
+								<dd>
+									<div data-detail-fetch="auditorTime" data-date-transform="YYYY-MM-DD HH:mm:ss"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>渠道金额</dt>
+								<dd>
+									<div data-detail-fetch="channelAmount" ></div>
+								</dd>
+							</dl>
+						</div>-->
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">确 定</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  签到记录 -->
+<div id="signModal" class="modal fade item_box" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document" style="width: 30%;">
+		<div class="modal-content">
+			<!-- 模态窗头部 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<!-- 模态窗内容体 -->
+			<div class="modal-body">
+				<!-- 设置返佣金额 -->
+				<form id="signSearchForm" name="signSearchForm" method="post">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>创建时间:</label>
+								<div class="input-group input-group-sm">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<input name="start" type="text" class="form-control datepicker" placeholder="从" data-date-format="YYYY-MM-DD" data-date-end="finish">
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>&nbsp;</label>
+								<div class="input-group daterange input-group-sm">
+									<div class="input-group-addon">
+										<i class="fa fa-calendar"></i>
+									</div>
+									<input name="finish" type="text" class="form-control datepicker" placeholder="到" data-date-format="YYYY-MM-DD" data-date-begin="start">
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+		          <table id="signTable" class="table table-bordered table-striped">
+		            <thead>
+		              <tr>
+		                <th>序号</th>
+		                <th>签到时间</th>
+		              </tr>
+		            </thead>
+		          </table>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">确 定</button>
+			</div>
+		</div>
+	</div>
+</div>
+

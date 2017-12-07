@@ -1,0 +1,246 @@
+<!-- 页面头部 -->
+<section class="content-header">
+	<h1>规则属性管理</h1>
+	<ol class="breadcrumb">
+		<li>
+			<a href="javascript:void(0)"><i class="fa fa-dashboard"></i> 规则属性管理</a>
+		</li>
+		<li class="active">规则属性管理</li>
+	</ol>
+</section>
+
+<!-- 主要内容 -->
+<section class="content item_box">
+	<div class="row">
+		<div class="col-xs-12">
+			<!-- Grid -->
+			<div id="dataGrid" class="box box-primary">
+				<!-- Grid头部 -->
+				<div class="box-header with-border">
+					<h3 class="box-title">规则属性管理</h3>
+					<div class="box-tools">
+						<button id="addRuleProp" class="btn btn-primary btn-sm">
+				      		<i class="fa"></i> 新增规则属性
+		        		</button>
+					</div>
+					<div class="box-header">
+						<!-- 统计数据 -->
+						<form id="searchForm" name="searchForm" method="post">
+							<div class="row">
+								<div class="col-sm-3 tulip-input-1">
+									<div class="form-group">
+										<label>名称：</label>
+										<input name="name" type="text" class="form-control input-sm" placeholder="搜索规则属性名称">
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label>规则属性类型</label>
+										<select name="type" class="form-control input-sm">
+											<option value="">全部</option>
+											<option value="get">领用</option>
+											<option value="use">使用</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-group">
+										<label>状态</label>
+										<select name="isdel" class="form-control input-sm">
+											<option value="">全部</option>
+											<option value="no">正常</option>
+											<option value="yes">已删除</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- Grid内容体 -->
+				<div class="box-body">
+					<table id="rulePropTable" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>属性名称</th>
+								<th>属性字段</th>
+								<th>单位</th>
+								<th>类型</th>
+								<th>单位值</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- 新增/编辑模态窗 默认大小窗体 -->
+<div id="rulePropModal" class="modal fade item_box" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<!-- 模态窗头部 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<!-- 模态窗内容体 -->
+			<div class="modal-body">
+				<!-- 新增/编辑事件表单 -->
+				<form id="rulePropForm" name="ruleProptForm" method="post">
+					<div class="row">
+						<div class="col-sm-6">
+							<label>属性名称</label>
+							<div class="form-group" >
+								<input name="name" type="text" id="name" maxlength="50" class="form-control input-sm" placeholder="请输入属性名称"  required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label>属性字段</label>
+							<div class="form-group">
+								<input name="field" type="text" id="field" maxlength="50" class="form-control input-sm" placeholder="请输入规则属性描述" required>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label>单位</label>
+							<div class="form-group">
+								<select name="unit" class="form-control input-sm" required>
+									<option value="" selected>--请选择--</option>
+									<option value="double">浮点</option>
+									<option value="number">数值</option>
+									<option value="interval">数值区间</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label>规则属性类型</label>
+								<select name="type" class="form-control input-sm" required>
+									<option value="" selected>--请选择--</option>
+									<option value="get">领用</option>
+									<option value="use">使用</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<label>单位值</label>
+							<div class="form-group">
+								<select name="unitvalue" class="form-control input-sm" required>
+									<option value="" selected>--请选择--</option>
+									<option value="元">元</option>
+									<option value="个">个</option>
+									<option value="天">天</option>
+									<option value="次">次</option>
+									<option value="百分比">百分比</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<input name="oid" type="hidden">
+				</form>
+			</div>
+			<!-- 模态窗底部 -->
+			<div class="modal-footer box bt0">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
+				<button id="rulePropSubmit" type="button" class="btn btn-primary btn-submit rulePropSubmit">确定</button>
+				<div id="rulePropRefreshDiv">
+		              <i id="rulePropRefreshI"></i>
+		        </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--确认提示框-->
+<div id="confirmModal" class="popover func-delete-popover">
+	<div class="arrow"></div>
+	<h3 class="popover-title"></h3>
+	<div class="popover-content">
+		<p></p>
+		<div class="popover-btn clearfix">
+			<div class="unit">
+				<button class="btn btn-block btn-primary accept" data-dismiss="modal">确 定</button>
+			</div>
+			<div class="unit">
+				<button class="btn btn-block btn-default cancel" data-dismiss="modal">取 消</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- 详情模态窗 默认大小 -->
+	<div id="detailModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<!-- 模态窗头部 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+				<h4 class="modal-title">详情</h4>
+			</div>
+			<!-- 模态窗内容体 -->
+			<div class="modal-body">
+				<form id="detailForm" name="detailForm" method="post">
+					<div class="row">
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>属性名称</dt>
+								<dd>
+									<div data-detail-fetch="name"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>属性字段</dt>
+								<dd>
+									<div data-detail-fetch="field"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>类型</dt>
+								<dd>
+									<div data-detail-fetch="type" data-enum-transform="ruleproptype"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>单位</dt>
+								<dd>
+									<div data-detail-fetch="unit" data-enum-transform="rulepropunit"></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>单位值</dt>
+								<dd>
+									<div data-detail-fetch="unitvalue" ></div>
+								</dd>
+							</dl>
+						</div>
+						<div class="col-sm-6">
+							<dl class="dl-horizontal">
+								<dt>状态</dt>
+								<dd>
+									<div data-detail-fetch="isdel" data-enum-transform="isdel"></div>
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

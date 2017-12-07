@@ -1,0 +1,153 @@
+<section class="content">
+	<div class="row">
+		<div class="col-xs-12">
+			<!-- 主体Grid -->
+			<div id="goodsGrid" class="box box-primary">
+				<!-- Grid头部 -->
+				<div class="box-header">
+					<h3 class="box-title">积分购买记录</h3>
+					<div class="box-tools">
+					</div>
+				</div>
+				<!-- Grid内容体 -->
+				<div class="box-body">
+					<!-- 搜索项表单 -->
+					<form id="searchForm" name="searchForm" method="post" class="search-body">
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label>购买时间:</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input name="startTime" type="text" class="form-control datepicker"
+											   placeholder="从（包含）" data-date-format="YYYY-MM-DD" data-date-end="endTime">
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label>&nbsp;</label>
+									<div class="input-group daterange">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input name="endTime" type="text" class="form-control datepicker"
+											   placeholder="到（不包含）" data-date-format="YYYY-MM-DD" data-date-begin="startTime">
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label>用户ID:</label>
+									<input type="text" class="form-control input-sm" id="userOid" name="userOid"
+										   placeholder="搜索用户ID">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label>积分产品ID:</label>
+									<input type="text" class="form-control input-sm" id="settingOid" name="settingOid"
+										   placeholder="搜索积分产品ID">
+								</div>
+							</div>
+
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label>购买状态:</label>
+									<select name="state" class="form-control input-sm">
+										<option selected="selected" value="">全部</option>
+										<option value="0">成功</option>
+										<option value="1">失败</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!-- 主体数据表格 -->
+					<table id="goods_Table" class="table table-bordered table-striped">
+						<thead>
+						<tr>
+							<th>序号</th>
+							<th>用户ID</th>
+							<th>积分产品ID</th>
+							<th>购买积分数量</th>
+							<th>花费的金额</th>
+							<th>购买时间</th>
+							<th>状态</th>
+							<th>创建时间</th>
+							<th>更新时间</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- 新建银行账户弹窗 -->
+<!--
+<div id="addGoodsModal" class="modal fade addModify" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			&lt;!&ndash; 模态窗头部 &ndash;&gt;
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">账户新增</h4>
+			</div>
+			&lt;!&ndash; 模态窗内容体 &ndash;&gt;
+			<div class="modal-body">
+				<form id="addGoodsForm" name="addGoodsForm" method="post">
+					<div class="form-group">
+						<label>名称</label>
+						<input name="name" id="add_name" type="text" class="form-control input-sm" placeholder="请输入商品名"
+							   required>
+						<span id="add_name_err" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<label>商品类型</label>
+						<select name="accountType" id="accountType" class="form-control">
+							<option value="real" selected="selected">实物</option>
+							<option value="virtual">虚拟</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label>所需积分</label>
+						<input name="needPoints" id="add_needPoints" type="text" class="form-control input-sm"
+							   placeholder="请输入所需积分" required>
+						<span id="add_needPoints_err" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<label>商品数量</label>
+						<input name="totalCount" id="add_totalCount" type="text" class="form-control input-sm"
+							   placeholder="请输入商品数量" required>
+						<span id="add_totalCount_err" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<label>商品介绍</label>
+						<input name="remark" id="add_remark" type="text" class="form-control input-sm"
+							   placeholder="请输入商品介绍" required>
+						<span id="add_remark_err" style="color:red;"></span>
+					</div>
+					<div class="form-group">
+						<label>商品图片</label>
+
+					</div>
+					<input name="oid" type="hidden">
+				</form>
+			</div>
+			&lt;!&ndash; 模态窗底部 &ndash;&gt;
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">取 消</button>
+				<button id="doAddGoods" type="button" class="btn btn-primary btn-submit">提 交</button>
+			</div>
+		</div>
+	</div>
+</div>-->

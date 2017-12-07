@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>GAME HELPER BOOT SYSTEM</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="plugins/iCheck/square/blue.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+		<link rel="stylesheet" href="plugins/bootstrap-toastr/toastr.min.css">
+
+  </head>
+  <body class="hold-transition login-page">
+    <div class="login-box">
+ <!--     <div class="login-logo">
+        <a href="javascript:void(0)">
+          <img src="assets/images/logo2.png" alt="国槐金融" class="login-logo" width="220">
+        </a>
+      </div>&lt;!&ndash; /.login-logo &ndash;&gt;-->
+      <div class="login-box-body">
+        <p class="login-box-msg text-red">
+          <span id="loginErrorMessage"></span>
+        </p>
+        <div class="form-group has-feedback">
+          <input id="loginAccount" type="text" class="form-control" placeholder="账户名">
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input id="loginPassword" type="password" class="form-control" placeholder="密码">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
+            <div class="checkbox icheck">
+              <label>
+                <input id="loginRememberMe" type="checkbox" checked> 记住我
+              </label>
+            </div>
+          </div>
+          <div class="col-xs-4">
+            <button id="doLogin" type="button" class="btn btn-primary btn-block btn-flat">登 录</button>
+          </div>
+        </div>
+
+        <p>
+          <!--<a href="javascript:void(0)">忘记密码？</a>-->
+          <!--<a href="javascript:void(0)" class="pull-right">注册新账户</a>-->
+        </p>
+
+        <!--<div class="social-auth-links text-center">
+          <p>- 建议使用 Chrome、Firefox 浏览器访问 -</p>
+        </div>-->
+
+      </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+		
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/bootstrap-toastr/toastr.js"></script>
+    <!-- iCheck -->
+    <script src="plugins/iCheck/icheck.min.js"></script>
+    <!-- requirejs -->
+    <script src="plugins/require/require.min.js"></script>
+    <script>
+
+      requirejs.config({
+        baseUrl: 'assets/js'
+      })
+
+      requirejs([
+        'http',
+        'config'
+      ],
+      function (http, config) {
+
+        $(document).ready(function () {
+
+          // '账户名'的 focus 和 blur 事件
+          $('#loginAccount')
+            .on('focus', function () {
+              $(document).on('keyup', function (e) {
+                if (e.keyCode === 13) {
+                  if (!this.value.trim()){
+                    return false
+                  } else if (!$('#loginPassword').val().trim()) {
+                    $('#loginPassword').focus()
+                  } else {
+                    doLogin()
+                  }
+                }
+              }.bind(this))
+            })
+            .on('blur', function () {
+              $(document).off('keyup')
+            })
+
+          // '密码'的 focus 和 blur 事件
+          $('#loginPassword')
+            .on('focus', function () {
+              $(document).on('keyup', function (e) {
+                if (e.keyCode === 13) {
+                  if (!this.value.trim()){
+                    return false
+                  } else {
+                    doLogin()
+                  }
+                }
+              }.bind(this))
+            })
+            .on('blur', function () {
+              $(document).off('keyup')
+            })
+
+          // '登录'按钮
+          $('#doLogin').on('click', function () {
+            doLogin()
+          })
+
+          // '记住我' iCheck 初始化
+          $('#loginRememberMe').iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
+          })
+
+          // 登录方法
+          function doLogin () {
+            var account = $('#loginAccount')
+            var password = $('#loginPassword')
+            var errorMessage = $('#loginErrorMessage')
+
+            if (!account.val().trim()) {
+              account.focus()
+              return false
+            }
+            if (!password.val().trim()){
+              password.focus()
+              return false
+            }
+            errorMessage.html('')
+            http.post(config.api.login, {
+              data: {
+                account: account.val().trim(),
+                password: password.val().trim(),
+                system: config.system
+              },
+              contentType: 'form'
+            }, function (rlt) {
+            /* 接入dandelion需要写入的cookie-开始 */
+						document.cookie = "dandelion_ckey" + "="+ encodeURIComponent(this.dandelionAccessCKEY)+";path=/"; 
+						document.cookie = "userId" + "="+ encodeURIComponent(rlt.oid)+";path=/"; 
+						document.cookie = "userName" + "="+ encodeURIComponent(rlt.name)+";path=/"; 
+						document.cookie = "system" + "="+ encodeURIComponent(config.system)+";path=/"; 
+						document.cookie = "phone" + "="+ encodeURIComponent(rlt.phone)+";path=/"; 
+						document.cookie = "account" + "="+ encodeURIComponent(rlt.account)+";path=/"; 
+						document.cookie = "email" + "="+ encodeURIComponent(rlt.email)+";path=/"; 
+						/* 接入dandelion需要写入的cookie-结束 */
+              location.href = 'index.html'
+            }, function (err) {
+              errorMessage.html('<i class="fa fa-exclamation-triangle"></i> ' + err.errorMessage)
+            })
+          }
+
+        })
+
+      })
+
+    </script>
+  </body>
+</html>
