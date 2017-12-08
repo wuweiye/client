@@ -20,7 +20,7 @@ define(function () {
             userInfo: this.host + '/operate/admin/info', // 登录用户信息服务
             resetPwd: this.host + '/operate/admin/reset/password/form', // 修改密码
             genPwd: this.host + '/operate/admin/reset/password/gen', // 重设密码
-            yup: this.host + '/yup', // 文件上传服务
+            yup: this.host + '/game/image/yup2',
             role: {
                 list: this.host + '/operate/admin/ctrl/role/list', // 角色列表
             save: this.host + '/operate/admin/ctrl/role/save', // 新建角色
@@ -71,8 +71,14 @@ define(function () {
                 gameLabelList : this.host + '/game/label/manage/game/query',
                 gameLabelAdd: this.host + '/game/label/manage/game/add',
                 gameLabelUpdate: this.host + '/game/label/manage/game/update',
-                gameLabelDelete:this.host+'/game/label/manage/game/delete',
+                gameLabelDelete:this.host+'/game/label/manage/game/delete'
 
+            },
+            items : {
+                itemsList : this.host + '/game/items/query',
+                itemsAdd: this.host + '/game/items/add',
+                itemsUpdate: this.host + '/game/items/update',
+                itemsDelete:this.host+'/game/items/delete'
             }
 
 
