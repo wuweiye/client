@@ -79,6 +79,12 @@ define(function () {
                 itemsAdd: this.host + '/game/items/add',
                 itemsUpdate: this.host + '/game/items/update',
                 itemsDelete:this.host+'/game/items/delete'
+            },
+            article : {
+                articleList : this.host + '/game/article/manage/query',
+                articleAdd: this.host + '/game/article/manage/add',
+                articleUpdate: this.host + '/game/article/manage/update',
+                articleDelete:this.host+'/game/article/manage/delete'
             }
 
 
