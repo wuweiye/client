@@ -254,8 +254,12 @@ define([
                         option_str=option_str+"<option value='"+obj.id+"'>"+obj.name+"</option>";
                     }
 
-                    var libraryName=$("#libraryName");
 
+                    var library=$("#library");
+                    library.append(option_str);
+
+
+                    var libraryName=$("#libraryName");
                     libraryName.append(option_str);
                 });
 
