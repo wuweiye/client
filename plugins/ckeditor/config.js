@@ -21,4 +21,5 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
 		{ name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
 	];
+    config.filebrowserImageUploadUrl = "/game/image/test/imageUpload";
 };
