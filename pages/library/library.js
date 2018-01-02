@@ -46,9 +46,8 @@ define([
                     queryParams: getQueryParams,
                     onClickCell: function (field, value, row, $element) {
                         switch (field) {
-                            case 'title': {
-                                queryInfo(value, row)
-                            }
+                            case 'name':
+                                queryInfo(value, row);
                                 break;
                             case 'imageUrl':
                                 viewImage(value, row);
@@ -65,12 +64,9 @@ define([
                         },
                         {
                             field: 'name',
-                            align: 'center'
+                            class: 'table_title_detail'
+
                         },
-
-
-
-
 
                         {
                             field: 'status',
@@ -234,6 +230,45 @@ define([
 
                     var toPage = $('input[name="toPage"]:checked').val();
 
+
+                    if (document.picForm.picItems.value) {
+
+                        var filename = document.picForm.picItems.value;
+                        //文件后缀名截取
+                        var postf = util.getSuffixName(filename);
+                        if (postf.toLowerCase() == ".jpg" || postf.toLowerCase() == ".png") {
+
+                            //添加重复提交样式
+                            $('#refreshDiv').addClass('overlay');
+                            $('#refreshI').addClass('fa fa-refresh fa-spin');
+                            $('#picForm').ajaxSubmit({
+                                url: config.api.yup,
+                                success: function (picResult) {
+                                    document.createForm.urlPath.value =  picResult;
+                                    dataFromSubmit();
+                                },error:function () {
+
+                                    alert("error");
+
+                                }
+                            })
+                        } else {
+                            toastr.error("图片格式仅限JPG、PNG,只可上传一张", '错误信息', {
+                                timeOut: 3000
+                            });
+                            return false;
+                        }
+                    } else {
+                        if (operating.operateType === 'update') {
+                            dataFromSubmit();
+                        }/* else {
+                            toastr.error("请选择需要上传的图片", '错误信息', {
+                                timeOut: 3000
+                            })
+                        }*/
+                    }
+
+
                     dataFromSubmit()
 
 
@@ -385,13 +420,8 @@ define([
 
                 //点击标题后事件
                 function queryInfo(value, row) {
-                    $$.detailAutoFix($('#detailForm'), row); // 自动填充详情
-                    $('#detailImageUrl').attr('src', row.imageUrl);
-                    $('#updateTime').html(null == row.updateTime ? '--' : util.table.formatter.timestampToDate(row.updateTime, 'YYYY-MM-DD HH:mm:ss'));
-                    $('#approveTime').html(null == row.approveTime ? '--' : util.table.formatter.timestampToDate(row.approveTime, 'YYYY-MM-DD HH:mm:ss'));
-                    $('#releaseTime').html(null == row.releaseTime ? '--' : util.table.formatter.timestampToDate(row.releaseTime, 'YYYY-MM-DD HH:mm:ss'));
-                    $('#detailRemark').val(row.remark);
-                    $('#detailModal').modal('show')
+                    //util.nav.dispatch('libraryDetail', 'gid=' + row.gid);
+
                 }
 
                 function viewImage(value, row) {
