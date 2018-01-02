@@ -135,7 +135,7 @@ define([
 					$(form).ajaxSubmit({
 						url: config.api.role.save,
 						success: function(result) {
-							if(result.errorCode == 0){
+							if(result.resultCode == 0){
 								$(form).find('input[name=auths]').remove()
 								util.form.reset($(form))
 								$('#roleTable').bootstrapTable('refresh')
@@ -158,7 +158,7 @@ define([
 					$(form).ajaxSubmit({
 						url: config.api.role.update,
 						success: function(result) {
-							if(result.errorCode == 0){
+							if(result.resultCode == 0){
 								$(form).find('input[name=auths]').remove()
 								util.form.reset($(form))
 								$('#roleTable').bootstrapTable('refresh')

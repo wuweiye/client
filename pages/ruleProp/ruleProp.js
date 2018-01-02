@@ -141,7 +141,7 @@ define([
 												},
 												contentType: 'form'
 											}, function(res) {
-												if (res.errorCode == 0) {
+												if (res.resultCode == 0) {
 													confirm.modal('hide')
 													$('#rulePropTable').bootstrapTable('refresh')
 												} else {
@@ -203,7 +203,7 @@ define([
 					$('#rulePropForm').ajaxSubmit({
 						url: config.api.ruleProp.saveRuleProp,
 						success: function(res) {
-							if(res.errorCode == 0) {
+							if(res.resultCode == 0) {
 								$('#rulePropModal').modal('hide')
 								$('#rulePropTable').bootstrapTable('refresh')
 							} else {

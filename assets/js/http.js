@@ -1,5 +1,5 @@
 /**
- * ajax请求全局封装，集中进行errorCode处理
+ * ajax请求全局封装，集中进行resultCode处理
  * amd模块，使用requirejs载入
  */
 
@@ -53,7 +53,7 @@ function baseAjax (type, url, options, success, failure) {
     data: options.data || '',
     async: options.async === undefined ? true : options.async
   }).then(function (res) {
-    if (!res.errorCode) {
+    if (!res.resultCode) {
       if (success) {
         success(res)
       }
@@ -69,16 +69,16 @@ function baseAjax (type, url, options, success, failure) {
 }
 
 function errorHandle (err) {
-  toastr.error(err.errorMessage, '错误信息', {
+  toastr.error(err.resultMessage, '错误信息', {
     timeOut: 3600000
   })
-  if (err.errorMessage == '用户未登录') {
+  if (err.resultMessage == '用户未登录') {
   	location.href = 'login.html';
   	return false;
   }
-  switch (err.errorCode) {
+  switch (err.resultCode) {
     case 10002:
-      alert(err.errorMessage)
+      alert(err.resultMessage)
       location.href = 'login.html'
       break
     default:

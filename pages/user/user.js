@@ -274,7 +274,7 @@ define([
 					$(form).ajaxSubmit({
 						url: config.api.user.create,
 						success: function(result) {
-							if(result.errorCode == 0){
+							if(result.resultCode == 0){
 								util.form.reset($(form))
 								$('#userTable').bootstrapTable('refresh')
 								$('#addUserModal').modal('hide')
@@ -294,7 +294,7 @@ define([
 					$(form).ajaxSubmit({
 						url: config.api.user.update,
 						success: function(result) {
-							if(result.errorCode == 0){
+							if(result.resultCode == 0){
 								util.form.reset($(form))
 								$('#userTable').bootstrapTable('refresh')
 								$('#updateUserModal').modal('hide')

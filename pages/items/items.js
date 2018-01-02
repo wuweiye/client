@@ -268,7 +268,7 @@ define([
                     $('#createForm').ajaxSubmit({
                         url: url,
                         success: function (result) {
-                            if (result.errorCode == 0) {
+                            if (result.resultCode == 0) {
                                 $('#createModal').modal('hide');
                                 $('#bannerTable').bootstrapTable('refresh');
                             } else {

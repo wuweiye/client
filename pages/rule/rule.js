@@ -136,7 +136,7 @@ define([
 												},
 												contentType: 'form'
 											}, function(res) {
-												if(res.errorCode == 0) {
+												if(res.resultCode == 0) {
 													confirm.modal('hide')
 													$('#ruleTable').bootstrapTable('refresh')
 												} else {
@@ -192,7 +192,7 @@ define([
 					$('#ruleForm').ajaxSubmit({
 						url: url,
 						success: function(res) {
-							if(res.errorCode == 0) {
+							if(res.resultCode == 0) {
 								$('#ruleModal').modal('hide')
 								$('#ruleTable').bootstrapTable('refresh')
 							} else {

@@ -133,7 +133,7 @@
           function doLogin () {
             var account = $('#loginAccount')
             var password = $('#loginPassword')
-            var errorMessage = $('#loginErrorMessage')
+            var resultMessage = $('#loginErrorMessage')
 
             if (!account.val().trim()) {
               account.focus()
@@ -143,7 +143,7 @@
               password.focus()
               return false
             }
-            errorMessage.html('')
+            resultMessage.html('')
             http.post(config.api.login, {
               data: {
                 account: account.val().trim(),
@@ -163,7 +163,7 @@
 						/* 接入dandelion需要写入的cookie-结束 */
               location.href = 'index.html'
             }, function (err) {
-              errorMessage.html('<i class="fa fa-exclamation-triangle"></i> ' + err.errorMessage)
+              resultMessage.html('<i class="fa fa-exclamation-triangle"></i> ' + err.resultMessage)
             })
           }
 

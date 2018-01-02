@@ -151,7 +151,7 @@ define([
                                             },
                                             contentType: 'form'
                                         }, function (res) {
-                                            if (res.errorCode == 0) {
+                                            if (res.resultCode == 0) {
                                                 confirm.modal('hide')
                                                 $('#dataTable').bootstrapTable('refresh')
                                             } else {
@@ -347,7 +347,7 @@ define([
                         },
                         contentType: 'form'
                     }, function (result) {
-                        if (result.errorCode == 0) {
+                        if (result.resultCode == 0) {
                             $('#channelModal').modal('hide');
                             $('#dataTable').bootstrapTable('refresh');
                         }

@@ -436,7 +436,7 @@
 												contentType: 'form'
 											},
 											function(rlt) {
-												if (rlt.errorCode == 0) {
+												if (rlt.resultCode == 0) {
 													$('#loginUserRepwdModal').modal('hide');
 													alert('密码修改成功, 请重新登录. ');
 													http.post(config.api.logout, function() {
