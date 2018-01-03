@@ -205,10 +205,18 @@ define([
                     $(form).validator('destroy');
                     util.form.validator.init($(form));
 
+                    var picForm = document.picForm;
+                    $(picForm).validator('destroy');
+                    util.form.validator.init($(picForm));
+
                     operating.operateType = 'add';
                     $('#createForm').clearForm().find('input[type=hidden]').val('');
+                    $('#picForm').clearForm();
+
 
                     util.form.reset($('#createForm'));
+                    util.form.reset($('#picForm'));
+
 
                     $('#createModal')
                         .modal('show')
@@ -259,19 +267,8 @@ define([
                             return false;
                         }
                     } else {
-                        if (operating.operateType === 'update') {
-                            dataFromSubmit();
-                        }/* else {
-                            toastr.error("请选择需要上传的图片", '错误信息', {
-                                timeOut: 3000
-                            })
-                        }*/
+                        dataFromSubmit();
                     }
-
-
-                    dataFromSubmit()
-
-
 
                 });
 
