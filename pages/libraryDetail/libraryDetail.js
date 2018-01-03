@@ -9,35 +9,36 @@ define([
 ],
 function (http, config, util, $$) {
 	return {
-		name: 'c_accountdetail',
+		name: 'libraryDetail',
 		init: function(){
-			var publisherOid = util.nav.getHashObj(location.hash).publisherOid || '';
-			http.post(config.api.publisherSuserinfo, {
+			var gid = util.nav.getHashObj(location.hash).gid || '7';
+
+			http.post(config.api.library.getDetail, {
 				data: {
-					publisherOid: publisherOid
+					gid: gid
 				},
 				contentType: 'form'
 			}, function (result) {
-				$('#basicBalance').html(result.basicBalance || '--')
-				$('#totalLoanAmount').html(result.totalLoanAmount)
-				$('#totalDepositAmount').html(result.totalDepositAmount)
-				$('#totalWithdrawAmount').html(result.totalWithdrawAmount)
-				$('#totalInterestAmount').html(result.totalInterestAmount)
-				$('#overdueTimes').html(result.overdueTimes)
+
+				console.log(result.urlPath);
+
+				$('#id').html(result.id || '--');
+				$('#status').html( util.enum.transform('gameLibraryStatus', result.status));
+				$('#gameName').html(result.gameName);
+				$('#developStore').html(result.developStore);
+				$('#followCount').html(result.followCount);
+				$('#urlPath').html(util.table.formatter.thumbImg(result.urlPath));
 				
-				$("#phone").html(result.phone)
-				$("#createTime").html(result.createTime)
-				$("#realName").html(result.realName || '--')
-				$("#certificateNo").html(result.certificateNo || '--')
-				$("#bankName").html(result.bankName || '--')
-				$("#cardNo").html(result.cardNo || '--')
-				$("#statusDisp").html(result.statusDisp)
-				$("#collectionSettlementBalance").html(result.collectionSettlementBalance)
-				$("#availableAmountBalance").html(result.availableAmountBalance)
-				$("#frozenAmountBalance").html(result.frozenAmountBalance)
-				$("#withdrawAvailableAmountBalance").html(result.withdrawAvailableAmountBalance)
-			})
-			var pageOptions1 = {
+				$("#labels").html(result.labels);
+				$("#desc").html(result.desc);
+				$("#oneStarNum").html(result.oneStarNum );
+				$("#twoStarNum").html(result.twoStarNum);
+				$("#thereStarNum").html(result.thereStarNum );
+				$("#fourStarNum").html(result.fourStarNum );
+				$("#fiveStarNum").html(result.fiveStarNum)
+
+			});
+			/*var pageOptions1 = {
 				number: 1,
 				size: 10,
 				offset: 0,
@@ -52,9 +53,9 @@ function (http, config, util, $$) {
 				offset: 0,
 				orderType: '',
 				orderStatus: ''
-			}
+			}*/
 	    
-			var tableConfig1 = {
+			/*var tableConfig1 = {
 				ajax: function (origin) {
 					http.post(config.api.caccountAccproducts, {
 						data: {
@@ -114,8 +115,8 @@ function (http, config, util, $$) {
 						}
 					}
 				]
-			}
-			var tableConfig2 = {
+			}*/
+			/*var tableConfig2 = {
 				ajax: function (origin) {
 					http.post(config.api.publisherSmng, {
 						data: {
@@ -221,18 +222,18 @@ function (http, config, util, $$) {
 						}
 					}
 				]
-			}
+			}*/
 			
-			$('#dataTable1').bootstrapTable(tableConfig1)
+			/*$('#dataTable1').bootstrapTable(tableConfig1)
 			$('#dataTable2').bootstrapTable(tableConfig2)
 			
 			$$.searchInit($('#searchForm1'), $('#dataTable1'))
-			$$.searchInit($('#searchForm2'), $('#dataTable2'))
+			$$.searchInit($('#searchForm2'), $('#dataTable2'))*/
 			
 			/**
 			 * 详情附件表格配置
 			 */
-			var productDetailInvestFileTableConfig = {
+			/*var productDetailInvestFileTableConfig = {
 				columns: [{
 					field: 'name',
 				}, {
@@ -256,16 +257,16 @@ function (http, config, util, $$) {
 						}
 					}
 				}]
-			}
+			}*/
 
-			/**
+			/*/!**
 			 * 详情投资协议书表格初始化
-			 */
-			$('#productDetailInvestFileTable').bootstrapTable(productDetailInvestFileTableConfig)
-			
-			/**
+			 *!/
+			$('#productDetailInvestFileTable').bootstrapTable(productDetailInvestFileTableConfig)*/
+			/*
+			/!**
 			 * 详情信息服务协议表格配置
-			 */
+			 *!/
 			var productDetailServiceFileTableConfig = {
 				columns: [{
 					field: 'name',
@@ -290,16 +291,16 @@ function (http, config, util, $$) {
 						}
 					}
 				}]
-			}
+			}*/
 
-			/**
+		/*	/!**
 			 * 详情信息服务协议表格初始化
-			 */
+			 *!/
 			$('#productDetailServiceFileTable').bootstrapTable(productDetailServiceFileTableConfig)
 			
-			/**
+			/!**
 			 * 详情附件表格配置
-			 */
+			 *!/
 			var productDetailFileTableConfig = {
 				columns: [{
 					field: 'name',
@@ -326,14 +327,14 @@ function (http, config, util, $$) {
 				}]
 			}
 
-			/**
+			/!**
 			 * 详情附件表格初始化
-			 */
+			 *!/
 			$('#productDetailFileTable').bootstrapTable(productDetailFileTableConfig)
 			
-			/**
+			/!**
 			 * 产品详情设置奖励收益表格配置
-			 */
+			 *!/
 			var productRewardTableConfig = {
 				columns: [{
 					field: 'level'
@@ -350,17 +351,18 @@ function (http, config, util, $$) {
 				}, {
 					field: 'ratio'
 				}, ]
-			}
+			}*/
 
-			/**
+			/*/!**
 			 * 设置奖励收益表格初始化
-			 */
+			 *!/
 			$('#productRewardTable').bootstrapTable(productRewardTableConfig)
 			
 			$("#doExport").on("click",function(){
 				util.tableToExcel($("#dataTable2")[0],"平台余额流水")
-			})
-			
+			})*/
+
+			/*
 			function getQueryParams1 (val) {
 				var form = document.searchForm1
 				pageOptions1.size = val.limit
@@ -381,7 +383,7 @@ function (http, config, util, $$) {
 				pageOptions2.orderType = form.orderType.value
 				pageOptions2.orderStatus = form.orderStatus.value
 				return val
-			}
+			}*/
 			
 			$(".check_img").on("click",function(){
 				if(this === document.getElementById('website')){
@@ -397,7 +399,7 @@ function (http, config, util, $$) {
 				window.open(_url);
 			});
 			
-			function qryInfo(value,row){
+			/*function qryInfo(value,row){
 				http.post(config.api.productDetail, {
 					data: {
 						oid: row.oid
@@ -465,7 +467,7 @@ function (http, config, util, $$) {
 						alert(查询失败);
 					}
 				})
-			}
+			}*/
 		}
 	}
 })

@@ -20,83 +20,80 @@
 				<div class="box-header with-border">
 					<!-- 统计数据 -->
 					<h4>基本信息</h4>
+					<div class="row topdata " >
+						<div class="col-sm-4">
+							编号：<span id="id"></span>
+						</div>
+						<div class="col-sm-4">
+							游戏：<span id="gameName"></span>
+						</div>
+						<div class="col-sm-4">
+							开发商：<span id="developStore"></span>
+						</div>
+						<div class="col-sm-4">
+							关注人数：<span id="followCount"></span>
+						</div>
+						<div class="col-sm-4">
+							状态：<span id="status"></span>
+						</div>
+
+					</div>
+
 					<div class="row topdata">
 						<div class="col-sm-4">
-							手机号：<span id="phone"></span>
+							一星评价：<span id="oneStarNum"></span>
 						</div>
 						<div class="col-sm-4">
-							注册时间：<span id="createTime"></span>
+							二星评价：<span id="twoStarNum"></span>
 						</div>
 						<div class="col-sm-4">
-							姓名：<span id="realName"></span>
+							三星评价：<span id="thereStarNum"></span>
 						</div>
 						<div class="col-sm-4">
-							证件号：<span id="certificateNo"></span>
+							四星评价：<span id="fourStarNum"></span>
 						</div>
 						<div class="col-sm-4">
-							银行名称：<span id="bankName"></span>
+							五星评价：<span id="fiveStarNum"></span>
 						</div>
-						<div class="col-sm-4">
-							银行账号：<span id="cardNo"></span>
-						</div>
-						<div class="col-sm-4">
-							状态：<span id="statusDisp"></span>
-						</div>
-						</div>
-					<h4>资金信息</h4>
-					<div class="row topdata">  
-						<div class="col-sm-4">
-							账户余额(元)：<span id="basicBalance" class="currency"></span>
-						</div>
-						<!--<div class="col-sm-2">
-							银行卡：<span id="bankCode"></span>（尾号 <span id="bankAccountNo"></span>）
-						</div>-->
-						<div class="col-sm-4">
-							累计借款总额(元)：<span id="totalLoanAmount" class="currency"></span>
-						</div>
-						<div class="col-sm-4">
-							累计充值总额(元)：<span id="totalDepositAmount" class="currency"></span>
-						</div>
-						<div class="col-sm-4">
-							累计提现总额(元)：<span id="totalWithdrawAmount" class="currency"></span>
-						</div>
-						<div class="col-sm-4">
-							累计支付利息(元)：<span id="totalInterestAmount" class="currency"></span>
-						</div>
-						<div class="col-sm-4">
-							逾期次数(次)：<span id="overdueTimes" class="quantity"></span>
-						</div>
-						<div class="col-sm-4">
-							归集清算户余额(元)：<span id="collectionSettlementBalance" class="currency"></span>
-						</div>
-						<div class="col-sm-4">
-							可用金户余额(元)：<span id="availableAmountBalance" class="currency"></span>
-						</div>
-						<div class="col-sm-4">
-							冻结户余额(元)：<span id="frozenAmountBalance" class="currency"></span>
-						</div>
-						<div class="col-sm-4">
-							提现可用金余额(元)：<span id="withdrawAvailableAmountBalance" class="currency"></span>
-						</div>
+
 					</div>
+
+					<div class="row topdata">
+						<div class="col-sm-12">
+							描述：<span id="desc"></span>
+						</div>
+
+					</div>
+
+					<div class="row topdata">
+
+						<div class="col-sm-2">
+							LOGO:
+						</div>
+						<div class="col-sm-12">
+							<span id="urlPath"></span>
+						</div>
+
+					</div>
+
 				</div>
 				<!-- Grid内容体 -->
-				<div class="box-body">
-					<!-- 原搜索位 -->
+				<!--<div class="box-body">
+					&lt;!&ndash; 原搜索位 &ndash;&gt;
 					<div class="nav-tabs-custom">
-						<!-- Nav tabs -->
+						&lt;!&ndash; Nav tabs &ndash;&gt;
 						<ul class="nav nav-tabs" role="tablist">
-							<li role="presentation" class="active"><a href="#tabcon1" aria-controls="产品发标记录" role="tab" data-toggle="tab">产品发标记录</a></li>
-							<li role="presentation"><a href="#tabcon2" aria-controls="交易记录" role="tab" data-toggle="tab">交易记录</a></li>
+							<li role="presentation" class="active"><a href="#tabcon1" aria-controls="产品发标记录" role="tab" data-toggle="tab">-&#45;&#45;&#45;&#45;&#45;&#45;</a></li>
+							<li role="presentation"><a href="#tabcon2" aria-controls="交易记录" role="tab" data-toggle="tab">-&#45;&#45;&#45;&#45;</a></li>
 						</ul>
-						<!-- Tab panes -->
+						&lt;!&ndash; Tab panes &ndash;&gt;
 						<div class="tab-content">
 							<div role="tabpanel" class="tab-pane active" id="tabcon1">
 								<form id="searchForm1" name="searchForm1" method="post" class="box-header">
 									<div class="row">
 										<div class="col-sm-3">
 											<div class="form-group">
-												<label>产品编号</label>
+												<label>-&#45;&#45;1-&#45;&#45;</label>
 												<input name="code" type="text"
 													   class="form-control"
 													   placeholder="搜索产品编号">
@@ -104,7 +101,7 @@
 										</div>
 										<div class="col-sm-3">
 											<div class="form-group">
-												<label>产品名称</label>
+												<label>&#45;&#45;&#45;&#45;2&#45;&#45;</label>
 												<input name="name" type="text"
 													   class="form-control"
 													   placeholder="搜索产品名称">
@@ -112,7 +109,7 @@
 										</div>
 										<div class="col-sm-3">
 											<div class="form-group">
-												<label>发标时间</label>
+												<label>回复时间</label>
 												<div class="input-group input-group-sm">
 													<div class="input-group-addon">
 														<i class="fa fa-calendar"></i>
@@ -140,16 +137,16 @@
 										</div>
 									</div>
 								</form>
-								<!-- 数据表格 -->
+								&lt;!&ndash; 数据表格 &ndash;&gt;
 								<table id="dataTable1" class="table table-bordered table-striped">
 									<thead>
 										<tr>
 											<th>序号</th>
-											<th>产品编号</th>
-											<th>产品名称</th>
-											<th>产品类型</th>
-											<th>产品管理人</th>
-											<th>发标时间</th>
+											<th>1</th>
+											<th>2</th>
+											<th>3</th>
+											<th>4</th>
+											<th>5</th>
 										</tr>
 									</thead>
 								</table>
@@ -160,27 +157,27 @@
 										<form id="searchForm2" name="searchForm2" method="post">
 											<div class="col-sm-3">
 												<div class="form-group">
-													<label>交易类型</label>
+													<label>22222</label>
 													<select name="orderType" class="form-control">
 														<option value="" selected>全部</option>
-														<option value="deposit">充值</option>
-														<option value="withdraw">提现</option>
-														<option value="collect">收款</option>
-														<option value="pay">放款</option>
+														<option value="deposit">1</option>
+														<option value="withdraw">2</option>
+														<option value="collect">3</option>
+														<option value="pay">4</option>
 													</select>
 												</div>
 											</div>
 											<div class="col-sm-3">
 												<div class="form-group">
-													<label>订单状态</label>
+													<label>33333</label>
 													<select name="orderStatus" class="form-control">
 														<option value="" selected>全部</option>
-														<option value="submitFailed">申请失败</option>
-														<option value="refused">已拒绝</option>
-														<option value="toPay">待支付</option>
-														<option value="payFailed">支付失败</option>
-														<option value="paySuccess">成交</option>
-														<option value="abandoned">已作废</option>
+														<option value="submitFailed">1</option>
+														<option value="refused">2</option>
+														<option value="toPay">3</option>
+														<option value="payFailed">4</option>
+														<option value="paySuccess">5</option>
+														<option value="abandoned">6</option>
 													</select>
 												</div>
 											</div>
@@ -193,20 +190,20 @@
 										</div>
 									</div>
 								</div>
-								<!--<button id="doExport" class="btn btn-default btn-sm">导出Excel</button>-->
-								<!-- 数据表格 -->
+								&lt;!&ndash;<button id="doExport" class="btn btn-default btn-sm">导出Excel</button>&ndash;&gt;
+								&lt;!&ndash; 数据表格 &ndash;&gt;
 								<table id="dataTable2" class="table table-bordered table-striped">
 									<thead>
 										<tr>
 											<th>序号</th>
-											<th>订单号</th>
-											<th>交易类型</th>
-											<th>手续费支付方</th>
-											<th>手续费(元)</th>
-											<th>订单金额(元)</th>
-											<th>订单状态</th>
-											<th>订单创建时间</th>
-											<th>订单完成时间</th>
+											<th>1</th>
+											<th>2</th>
+											<th>3</th>
+											<th>4(元)</th>
+											<th>5(元)</th>
+											<th>6</th>
+											<th>7</th>
+											<th>8</th>
 											<th>操作</th>
 										</tr>
 									</thead>
@@ -214,7 +211,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</div>
@@ -248,18 +245,18 @@
 	</div>
 </div>
 
-<!-- 产品详情弹窗 -->
+<!--&lt;!&ndash; 产品详情弹窗 &ndash;&gt;
 <div id="productDetailModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
-			<!-- 模态窗头部 -->
+			&lt;!&ndash; 模态窗头部 &ndash;&gt;
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<h4 class="modal-title">产品详情</h4>
 			</div>
-			<!-- 模态窗内容体 -->
+			&lt;!&ndash; 模态窗内容体 &ndash;&gt;
 			<div class="modal-body">
 				<p class="form-header">产品概况</p>
 				<div class="row">
@@ -351,16 +348,16 @@
 							</dd>
 						</dl>
 					</div>
-					<!--<div class="col-sm-6">
+					&lt;!&ndash;<div class="col-sm-6">
 						<dl class="dl-horizontal">
 							<dt>是否自动派息:</dt>
 							<dd>
 								<div data-detail-fetch="isAutoAssignIncomeStr"></div>
 							</dd>
 						</dl>
-					</div>-->
+					</div>&ndash;&gt;
 				</div>
-				<!-- 封闭式产品显示/隐藏层 -->
+				&lt;!&ndash; 封闭式产品显示/隐藏层 &ndash;&gt;
 				<div id="detailProductType01Area">
 					<p class="form-header">封闭式产品信息</p>
 					<div class="row">
@@ -420,14 +417,14 @@
 								</dd>
 							</dl>
 						</div>
-						<!--<div class="col-sm-6">
+						&lt;!&ndash;<div class="col-sm-6">
 							<dl class="dl-horizontal">
 								<dt>起息日:</dt>
 								<dd>
 									<div data-detail-fetch="interestsFirstDateStr"></div>
 								</dd>
 							</dl>
-						</div>-->
+						</div>&ndash;&gt;
 						<div class="col-sm-6">
 							<dl class="dl-horizontal">
 								<dt>存续期:</dt>
@@ -527,7 +524,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- 开放式产品显示/隐藏层 -->
+				&lt;!&ndash; 开放式产品显示/隐藏层 &ndash;&gt;
 				<div id="detailProductType02Area">
 					<p class="form-header">开放式产品信息</p>
 					<div class="row">
@@ -888,7 +885,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>-->
 
 <!--确认提示框-->
 <div id="confirmModal" class="popover func-delete-popover">

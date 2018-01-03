@@ -20,7 +20,7 @@ define(function () {
             userInfo: this.host + '/operate/admin/info', // 登录用户信息服务
             resetPwd: this.host + '/operate/admin/reset/password/form', // 修改密码
             genPwd: this.host + '/operate/admin/reset/password/gen', // 重设密码
-            yup: this.host + '/game/image/yup2',
+            yup: this.host + '/game/image/yup2',  //上传图片
             role: {
                 list: this.host + '/operate/admin/ctrl/role/list', // 角色列表
             save: this.host + '/operate/admin/ctrl/role/save', // 新建角色
@@ -58,7 +58,8 @@ define(function () {
                 libraryAdd: this.host + '/game/data/manage/add',
                 libraryUpdate: this.host + '/game/data/manage/update',
                 libraryDelete:this.host+'/game/data/manage/delete',
-                getLibrary : this.host+'/game/data/manage/get/game'
+                getLibrary : this.host+'/game/data/manage/get/game',
+                getDetail  : this.host + '/game/data/manage/detail'
             },
 
             label :{
@@ -360,6 +361,9 @@ define(function () {
         },{
             id:"delete",
             text:"已删除"
+        },{
+            id:"none",
+            text:"未知"
         }],
     }
 })

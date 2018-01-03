@@ -420,7 +420,7 @@ define([
 
                 //点击标题后事件
                 function queryInfo(value, row) {
-                    //util.nav.dispatch('libraryDetail', 'gid=' + row.gid);
+                    util.nav.dispatch('libraryDetail', 'gid=' + row.gid);
 
                 }
 
