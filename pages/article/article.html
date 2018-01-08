@@ -42,7 +42,7 @@
 									<select id="library"  name="gid" class="form-control input-sm">
 									</select>
 								</div>
-							</div>
+							</div>ss
 
 							<div class="col-sm-3">
 								<div class="form-group">
@@ -78,8 +78,12 @@
 	</div>
 </section>
 
-<div id="createModal" class="modal fade bs-example-modal-sm item_box" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
+
+
+
+
+<div id="createModal" class="modal fade bs-example-modal-lg item_box" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<!-- 模态窗头部 -->
 			<div class="modal-header">
@@ -127,6 +131,7 @@
 
 
 						<input name="id" type="hidden"/>
+						<input name="source" value="article" type="hidden"/>
 
 					</form>
 				</div>
@@ -161,3 +166,103 @@
 </div>
 
 
+<div id="showModal" class="modal fade bs-example-modal-lg item_box" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<!-- 模态窗头部 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<!-- 模态窗内容体 -->
+			<div class="modal-body">
+				<!-- 新增/编辑事件表单 -->
+				<div>
+
+					<div class=" col-sm-3">
+						<span id="game"></span>
+
+					</div>
+
+					<div class="col-sm-3">
+						<div class="form-group input-group-sm">\
+							<span id="status"></span>
+						</div>
+					</div>
+
+					<div class=" col-sm-3">
+						<span id="title"></span>
+					</div>
+
+					<div class=" col-sm-12">
+						<label>内容</label>
+						<span id="content"></span>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- 详情模态窗 默认大小 -->
+<div id="detailModal" class="modal fade bs-example-modal-lg item_box" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<!-- 模态窗头部 -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" data-detail-fetch="gameName"></h4>
+			</div>
+			<!-- 模态窗内容体 -->
+			<div class="modal-body">
+				<form id="detailForm" name="detailForm" method="post">
+					<div class="row">
+
+						<div class="col-sm-3">
+							<dl class="dl-horizontal">
+								<dt>游戏：</dt>
+								<dd>
+									<div data-detail-fetch="gameName"></div>
+								</dd>
+							</dl>
+						</div>
+
+
+						<div class="col-sm-3">
+							<dl class="dl-horizontal">
+								<dt>标题</dt>
+								<dd>
+									<div data-detail-fetch="title"></div>
+								</dd>
+							</dl>
+						</div>
+
+
+
+					</div>
+					<div class="row">
+
+						<div class="col-sm-12">
+							<dl class="dl-horizontal">
+								<dt>内容</dt>
+								<dd>
+									<div data-detail-fetch="content"></div>
+								</dd>
+							</dl>
+						</div>
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

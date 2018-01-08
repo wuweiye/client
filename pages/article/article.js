@@ -45,6 +45,9 @@ define([
                     queryParams: getQueryParams,
                     onClickCell: function (field, value, row, $element) {
                         switch (field) {
+                            case 'gameName':
+                                queryGameName(value, row);
+                                break;
                             case 'title': {
                                 queryInfo(value, row)
                             }
@@ -64,11 +67,12 @@ define([
                         },
                         {
                             field: 'gameName',
-                            align: 'center'
+                            /*align: 'center'*/
+                            class: 'table_title_detail'
                         },
                         {
                             field: 'title',
-                            align: 'center'
+                            class: 'table_title_detail'
                         }/*,
                         {
                             field: 'content',
@@ -192,7 +196,7 @@ define([
 
                     $('#createModal')
                         .modal('show')
-                        .find('.modal-title').html('添加新的道具')
+                        .find('.modal-title').html('添加新的攻略')
                 });
 
                 $('#sortBanner').on('click', function () {
@@ -315,14 +319,19 @@ define([
                     return val
                 }
 
+                function queryGameName(value, row){
+                    util.nav.dispatch('libraryDetail', 'gid=' + row.gid);
+                }
+
+
                 //点击标题后事件
                 function queryInfo(value, row) {
                     $$.detailAutoFix($('#detailForm'), row); // 自动填充详情
-                    $('#detailImageUrl').attr('src', row.imageUrl);
+                    /*$('#detailImageUrl').attr('src', row.imageUrl);
                     $('#updateTime').html(null == row.updateTime ? '--' : util.table.formatter.timestampToDate(row.updateTime, 'YYYY-MM-DD HH:mm:ss'));
                     $('#approveTime').html(null == row.approveTime ? '--' : util.table.formatter.timestampToDate(row.approveTime, 'YYYY-MM-DD HH:mm:ss'));
                     $('#releaseTime').html(null == row.releaseTime ? '--' : util.table.formatter.timestampToDate(row.releaseTime, 'YYYY-MM-DD HH:mm:ss'));
-                    $('#detailRemark').val(row.remark);
+                    $('#detailRemark').val(row.remark);*/
                     $('#detailModal').modal('show')
                 }
 
